@@ -1,7 +1,7 @@
 ﻿var input = File.ReadAllLines("input.txt");
 
 var dots = new List<(int x, int y)>();
-var instructions = new List<(bool isHorizontal, int value)>();
+var folds = new List<(int x, int y)>();
 
 foreach (var line in input)
 {
@@ -16,10 +16,8 @@ foreach (var line in input)
         var parts = instruction
             .Split("=", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
-        var isHorizontal = parts[0] == "y";
         var value = int.Parse(parts[1]);
-
-        instructions.Add((isHorizontal, value));
+        folds.Add((parts[0] == "y" ? 0 : value, parts[0] == "x" ? value : 0));
     }
     else
     {
@@ -31,16 +29,7 @@ foreach (var line in input)
     }
 }
 
-var paper = new Paper(dots.ToArray());
-//paper.Print();
-
-foreach (var (isHorizontal, value) in instructions)
-{
-    paper = paper.Fold(isHorizontal, value);
-    //paper.Print();
-    Console.WriteLine($"Dots count: {paper.DotsCount}");
-}
-
+var paper = folds.Aggregate(new Paper(dots.ToArray()), (current, fold) => current.Fold(fold));
 paper.Print();
 
 
@@ -55,50 +44,33 @@ public sealed class Paper
         this.width = width;
         this.height = height;
         this.dots = new HashSet<(int x, int y)>(dots);
+
+        Console.WriteLine($"Dots count: {this.dots.Count}");
     }
 
-    public Paper((int x, int y)[] dots)
+    public Paper((int x, int y)[] dots) :
+        this(
+            dots.Select(dot => dot.x).Max() + 1,
+            dots.Select(dot => dot.y).Max() + 1,
+            dots
+        )
     {
-        width = dots.Select(dot => dot.x).Max() + 1;
-        height = dots.Select(dot => dot.y).Max() + 1;
-        this.dots = new HashSet<(int x, int y)>(dots);
     }
 
-    public int DotsCount => dots.Count;
-
-    public Paper Fold(bool isHorizontal, int value)
-    {
-        var newDots = new List<(int x, int y)>();
-
-        foreach (var dot in dots)
-        {
-            switch (isHorizontal)
-            {
-                case true when dot.y < value:
-                case false when dot.x < value:
-                    newDots.Add(dot);
-                    break;
-                default:
-                    newDots.Add(Fold(dot, isHorizontal, value));
-                    break;
-            }
-        }
-
-        return new Paper(
-            isHorizontal
-                ? width
-                : value,
-            isHorizontal
-                ? value
-                : height,
-            newDots.ToArray()
+    public Paper Fold((int x, int y) fold)
+        => new(
+            fold.y > 0 ? width : fold.x,
+            fold.y > 0 ? fold.y : height,
+            dots.Select(dot =>
+                fold.x > 0 && dot.x < fold.x ||
+                fold.y > 0 && dot.y < fold.y
+                    ? dot
+                    : (Fold(dot.x, fold.x), Fold(dot.y, fold.y)))
         );
-    }
 
-    private static (int x, int y) Fold((int x, int y) dot, bool isHorizontal, int value)
-        => isHorizontal
-            ? (dot.x, value * 2 - dot.y)
-            : (value * 2 - dot.x, dot.y);
+    private static int Fold(int dot, int fold)
+        => Math.Abs(fold * 2 - dot);
+
     public void Print()
     {
         Console.WriteLine("---------------------");
