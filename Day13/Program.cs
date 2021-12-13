@@ -17,7 +17,7 @@ foreach (var line in input)
             .Split("=", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
 
         var value = int.Parse(parts[1]);
-        folds.Add((parts[0] == "y" ? 0 : value, parts[0] == "x" ? value : 0));
+        folds.Add((parts[0] == "y" ? 0 : value, parts[0] == "x" ? 0 : value));
     }
     else
     {
@@ -59,7 +59,7 @@ public sealed class Paper
 
     public Paper Fold((int x, int y) fold)
         => new(
-            fold.y > 0 ? width : fold.x,
+            fold.x > 0 ? fold.x : width,
             fold.y > 0 ? fold.y : height,
             dots.Select(dot =>
                 fold.x > 0 && dot.x < fold.x ||
@@ -79,7 +79,7 @@ public sealed class Paper
         {
             for (var x = 0; x < width; x++)
             {
-                Console.Write(dots.Contains((x, y)) ? "#" : ".");
+                Console.Write(dots.Contains((x, y)) ? "█" : " ");
             }
 
             Console.WriteLine();
