@@ -35,45 +35,28 @@ paper.Print();
 
 public sealed class Paper
 {
-    private readonly int width;
-    private readonly int height;
     private readonly HashSet<(int x, int y)> dots;
 
-    private Paper(int width, int height, IEnumerable<(int x, int y)> dots)
+    public Paper(IEnumerable<(int, int)> dots)
     {
-        this.width = width;
-        this.height = height;
         this.dots = new HashSet<(int x, int y)>(dots);
-
         Console.WriteLine($"Dots count: {this.dots.Count}");
     }
 
-    public Paper((int x, int y)[] dots) :
-        this(
-            dots.Select(dot => dot.x).Max() + 1,
-            dots.Select(dot => dot.y).Max() + 1,
-            dots
-        )
-    {
-    }
-
     public Paper Fold((int x, int y) fold)
-        => new(
-            fold.x > 0 ? fold.x : width,
-            fold.y > 0 ? fold.y : height,
-            dots.Select(dot =>
+        => new(dots.Select(dot =>
                 fold.x > 0 && dot.x < fold.x ||
                 fold.y > 0 && dot.y < fold.y
                     ? dot
-                    : (Fold(dot.x, fold.x), Fold(dot.y, fold.y)))
+                    : (Math.Abs(fold.x * 2 - dot.x), Math.Abs(fold.y * 2 - dot.y)))
         );
-
-    private static int Fold(int dot, int fold)
-        => Math.Abs(fold * 2 - dot);
 
     public void Print()
     {
         Console.WriteLine("---------------------");
+
+        var width = dots.Select(dot => dot.x).Max() + 1;
+        var height = dots.Select(dot => dot.y).Max() + 1;
 
         for (var y = 0; y < height; y++)
         {
