@@ -8,7 +8,7 @@ public static class Extensions
     {
         var binaryStringArray = binaryString.ToArray();
         return binaryStringArray
-            .Select((t, i) => (long) Math.Pow(2, i) * (binaryStringArray[binaryStringArray.Length - i - 1] - '0'))
+            .Select((c, i) => (long) Math.Pow(2, binaryStringArray.Length - i - 1) * (c - '0'))
             .Sum();
     }
 
