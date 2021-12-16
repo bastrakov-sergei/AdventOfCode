@@ -12,6 +12,14 @@ public static class Extensions
             .Sum();
     }
 
+    public static ReadOnlySpan<char> ReadEnum<T>(this ReadOnlySpan<char> inputSpan, int bitsCount, out T result) where T : Enum
+    {
+        var span = inputSpan.Head(bitsCount, out var subSpan);
+        //boxing
+        result = (T) (object) subSpan.ConvertToInt();
+        return span;
+    }
+
     public static ReadOnlySpan<char> ReadInt(this ReadOnlySpan<char> inputSpan, int bitsCount, out int result)
     {
         var span = inputSpan.Head(bitsCount, out var subSpan);

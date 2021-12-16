@@ -1,9 +1,11 @@
 ﻿using Day16;
+using Newtonsoft.Json;
 
 var input = File.ReadAllText("input.txt");
 var result = input.Parse();
 
-Console.WriteLine(result.ToString());
+Console.WriteLine(JsonConvert.SerializeObject(result));
+Console.WriteLine(result.ToPrettyString());
 
 Console.WriteLine($"Part 1: {SumVersion(result)}");
 Console.WriteLine($"Part 2: {result.GetValue()}");
