@@ -1,4 +1,6 @@
-﻿namespace Day18.Solution1;
+﻿using System;
+
+namespace Day18.Solution1;
 
 public class ValueElement : Element
 {

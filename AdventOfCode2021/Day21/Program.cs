@@ -1,4 +1,9 @@
-﻿var players = File
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+var players = File
     .ReadAllLines("input.txt")
     .Select(line => line.Split(":", StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries))
     .Select(parts => parts[^1])

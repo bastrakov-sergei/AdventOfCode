@@ -1,4 +1,7 @@
-﻿public class Scanner
+﻿using System.Collections.Generic;
+using System.Linq;
+
+public class Scanner
 {
     public string Name { get; }
     public Vector3 Position { get; }

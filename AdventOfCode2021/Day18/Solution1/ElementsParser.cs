@@ -1,4 +1,7 @@
-﻿namespace Day18.Solution1;
+﻿using System;
+using System.Linq;
+
+namespace Day18.Solution1;
 
 public static class ElementsParser
 {

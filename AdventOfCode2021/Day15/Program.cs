@@ -1,4 +1,9 @@
-﻿var riskMap = File
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+var riskMap = File
     .ReadAllLines("input.txt")
     .SelectMany((line, y) => line.Select((c, x) => (x, y, v: c - '0')))
     .ToDictionary(p => new Point(p.x, p.y), p => p.v);

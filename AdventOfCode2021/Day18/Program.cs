@@ -1,4 +1,7 @@
-﻿using Day18.Solution1;
+﻿using System;
+using System.IO;
+using System.Linq;
+using Day18.Solution1;
 using Day18.Solution2;
 
 var input = File.ReadAllLines("input.txt");

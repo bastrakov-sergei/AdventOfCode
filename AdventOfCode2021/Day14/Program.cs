@@ -1,4 +1,9 @@
-﻿var input = File.ReadAllLines("input.txt");
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+var input = File.ReadAllLines("input.txt");
 
 var inputPolymerTemplate = input.First();
 var replacements = input

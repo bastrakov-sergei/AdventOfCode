@@ -1,4 +1,6 @@
-﻿Console.WriteLine("Part 1: 39494195799979");
+﻿using System;
+
+Console.WriteLine("Part 1: 39494195799979");
 Console.WriteLine("Part 2: 13161151139617");
 /*
 inp w       inp w       inp w       inp w       inp w       inp w       inp w       inp w       inp w       inp w       inp w       inp w       inp w       inp w

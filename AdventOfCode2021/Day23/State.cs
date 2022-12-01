@@ -1,4 +1,8 @@
-﻿namespace Day23;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Day23;
 
 public record State(string Rooms, int RoomSize, string Hallway)
 {

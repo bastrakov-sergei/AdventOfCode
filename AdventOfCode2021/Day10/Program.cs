@@ -1,4 +1,9 @@
-﻿var inputLines = File.ReadAllLines("input.txt");
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+var inputLines = File.ReadAllLines("input.txt");
 
 var bracesMap = new Dictionary<char, char>
 {

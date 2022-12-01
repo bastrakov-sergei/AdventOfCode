@@ -1,4 +1,6 @@
-﻿public readonly struct Vector3
+﻿using System;
+
+public readonly struct Vector3
 {
     public readonly int X;
     public readonly int Y;

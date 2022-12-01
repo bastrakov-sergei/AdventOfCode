@@ -1,4 +1,8 @@
-﻿namespace Day16;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+
+namespace Day16;
 
 public static class Parser
 {

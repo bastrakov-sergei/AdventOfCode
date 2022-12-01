@@ -1,4 +1,9 @@
-﻿var field = File
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+var field = File
     .ReadAllLines("input.txt")
     .Select(line => line.Select(c => c - '0').ToArray())
     .ToArray();

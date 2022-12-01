@@ -1,4 +1,9 @@
-﻿var input = File.ReadAllLines("input.txt");
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+var input = File.ReadAllLines("input.txt");
 
 var dots = new List<(int x, int y)>();
 var folds = new List<(int x, int y)>();

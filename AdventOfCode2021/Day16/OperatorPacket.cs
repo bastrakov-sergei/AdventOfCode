@@ -1,4 +1,7 @@
-﻿namespace Day16;
+﻿using System;
+using System.Linq;
+
+namespace Day16;
 
 public class OperatorPacket : Packet
 {

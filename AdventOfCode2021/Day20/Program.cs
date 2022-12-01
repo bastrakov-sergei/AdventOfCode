@@ -1,4 +1,7 @@
-﻿using Day20;
+﻿using System;
+using System.IO;
+using System.Linq;
+using Day20;
 using Range = Day20.Range;
 
 var input = File.ReadAllLines("example.txt");

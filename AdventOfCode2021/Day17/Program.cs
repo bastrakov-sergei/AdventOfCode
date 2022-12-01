@@ -1,4 +1,9 @@
-﻿var input = File
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+var input = File
     .ReadAllText("input.txt")["target area: ".Length..];
 
 var parts = input.Split(", ", StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);

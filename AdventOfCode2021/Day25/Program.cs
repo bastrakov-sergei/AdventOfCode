@@ -1,4 +1,7 @@
-﻿using System.Collections.Immutable;
+﻿using System;
+using System.Collections.Immutable;
+using System.IO;
+using System.Linq;
 
 var input = File.ReadAllLines("input.txt");
 

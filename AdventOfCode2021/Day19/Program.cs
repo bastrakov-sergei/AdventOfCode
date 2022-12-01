@@ -1,4 +1,9 @@
-﻿var scanners = File
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
+var scanners = File
     .ReadAllLines("input.txt")
     .Parse()
     .ToArray();

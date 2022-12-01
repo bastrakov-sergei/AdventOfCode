@@ -1,4 +1,7 @@
-﻿using Day16;
+﻿using System;
+using System.IO;
+using System.Linq;
+using Day16;
 using Newtonsoft.Json;
 
 var input = File.ReadAllText("input.txt");
