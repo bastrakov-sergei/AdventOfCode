@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AOCCommon;
 using NUnit.Framework;
@@ -17,17 +16,11 @@ public class Day03 : AdventOfCodeBaseSolution
     public void Solve(Part part)
     {
         var input = Input.ReadAllLines();
-        
-        TestContext.WriteLine($@"{part.GetDescription()}: {part switch
-            {
-                Part.Part1 => Solution1Solve(input),
-                Part.Part2 => Solution2Solve(input),
-                _ => throw new ArgumentOutOfRangeException(nameof(part), part, null),
-            }
-        }");
+
+        PrintSolution(part, () => SolvePart1(input), () => SolvePart2(input));
     }
 
-    private static int Solution1Solve(IEnumerable<string> backpacks)
+    private static int SolvePart1(IEnumerable<string> backpacks)
     {
         var totalSum = 0;
         foreach (var backpack in backpacks)
@@ -44,7 +37,7 @@ public class Day03 : AdventOfCodeBaseSolution
         return totalSum;
     }
 
-    private static int Solution2Solve(IEnumerable<string> backpacks)
+    private static int SolvePart2(IEnumerable<string> backpacks)
     {
         var totalSum = 0;
         foreach (var backpackSet in backpacks.Batch(3))

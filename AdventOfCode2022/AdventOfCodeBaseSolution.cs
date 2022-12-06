@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Threading.Tasks;
+using AOCCommon;
 using Flurl.Http;
 using NUnit.Framework;
 
@@ -33,6 +34,17 @@ namespace AdventOfCode2022
         protected virtual async Task Setup()
         {
             Input = await GetInputAsync();
+        }
+
+        protected static void PrintSolution<T>(Part part, Func<T> part1Solution, Func<T> part2Solution)
+        {
+            TestContext.WriteLine($@"{part.GetDescription()}: {part switch
+                {
+                    Part.Part1 => part1Solution(),
+                    Part.Part2 => part2Solution(),
+                    _ => throw new ArgumentOutOfRangeException(nameof(part), part, null),
+                }
+            }");
         }
 
         private async Task<StreamReader> GetInputAsync()
@@ -68,11 +80,13 @@ namespace AdventOfCode2022
             var inputFile = BuildLocalFilePath();
             if (File.Exists(inputFile))
             {
-                reader = new StreamReader(inputFile, new FileStreamOptions
-                {
-                    Access = FileAccess.Read,
-                    Mode = FileMode.Open,
-                });
+                reader = new StreamReader(
+                    inputFile,
+                    new FileStreamOptions
+                    {
+                        Access = FileAccess.Read,
+                        Mode = FileMode.Open,
+                    });
                 return true;
             }
 

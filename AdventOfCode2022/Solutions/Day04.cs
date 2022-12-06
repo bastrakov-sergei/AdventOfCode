@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AOCCommon;
 using NUnit.Framework;
@@ -17,16 +16,10 @@ public class Day04 : AdventOfCodeBaseSolution
     public void Solve(Part part)
     {
         var input = Input.ReadAllLines();
-        TestContext.WriteLine($@"{part.GetDescription()}: {part switch
-            {
-                Part.Part1 => Solution1Solve(input),
-                Part.Part2 => Solution2Solve(input),
-                _ => throw new ArgumentOutOfRangeException(nameof(part), part, null),
-            }
-        }");
+        PrintSolution(part, () => SolvePart1(input), () => SolvePart2(input));
     }
 
-    private static int Solution1Solve(IEnumerable<string> lines)
+    private static int SolvePart1(IEnumerable<string> lines)
     {
         var count = 0;
         foreach (var line in lines)
@@ -44,7 +37,7 @@ public class Day04 : AdventOfCodeBaseSolution
         return count;
     }
 
-    private static int Solution2Solve(IEnumerable<string> lines)
+    private static int SolvePart2(IEnumerable<string> lines)
     {
         var count = 0;
         foreach (var line in lines)

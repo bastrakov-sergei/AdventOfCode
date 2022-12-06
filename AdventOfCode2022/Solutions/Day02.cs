@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AOCCommon;
 using NUnit.Framework;
@@ -21,16 +20,10 @@ public class Day02 : AdventOfCodeBaseSolution
             .Select(line => (op: line[0] - 'A', me: line[2] - 'X'))
             .ToArray();
 
-        TestContext.WriteLine($@"{part.GetDescription()}: {part switch
-            {
-                Part.Part1 => Solution1Solve(input),
-                Part.Part2 => Solution2Solve(input),
-                _ => throw new ArgumentOutOfRangeException(nameof(part), part, null),
-            }
-        }");
+        PrintSolution(part, () => SolvePart1(input), () => SolvePart2(input));
     }
 
-    private static string Solution1Solve(IEnumerable<(int op, int me)> input)
+    private static string SolvePart1(IEnumerable<(int op, int me)> input)
     {
         var score = new[,]
         {
@@ -42,7 +35,7 @@ public class Day02 : AdventOfCodeBaseSolution
         return input.Select(turn => score[turn.me, turn.op]).Sum().ToString();
     }
 
-    private static string Solution2Solve(IEnumerable<(int op, int me)> input)
+    private static string SolvePart2(IEnumerable<(int op, int me)> input)
     {
         var score = new[,]
         {

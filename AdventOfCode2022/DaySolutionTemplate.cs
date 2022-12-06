@@ -17,22 +17,15 @@ public class DaySolutionTemplate : AdventOfCodeBaseSolution
     public void Solve(Part part)
     {
         var input = Input.ReadAllLines();
-        
-        TestContext.WriteLine($@"{part.GetDescription()}: {part switch
-            {
-                Part.Part1 => Solution1Solve(input),
-                Part.Part2 => Solution2Solve(input),
-                _ => throw new ArgumentOutOfRangeException(nameof(part), part, null),
-            }
-        }");
+        PrintSolution(part, () => SolvePart1(input), () => SolvePart2(input));
     }
 
-    private static string Solution1Solve(IEnumerable<string> lines)
+    private static string SolvePart1(IEnumerable<string> lines)
     {
         throw new NotImplementedException();
     }
 
-    private static string Solution2Solve(IEnumerable<string> lines)
+    private static string SolvePart2(IEnumerable<string> lines)
     {
         throw new NotImplementedException();
     }

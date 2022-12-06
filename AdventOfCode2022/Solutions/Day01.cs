@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AOCCommon;
 using NUnit.Framework;
@@ -17,14 +16,12 @@ public class Day01 : AdventOfCodeBaseSolution
     public void Solve(Part part)
     {
         var caloriesPerElve = SelectTotalCaloriesPerElve(Input.ReadAllLines()).ToArray();
-        TestContext.WriteLine(
-            $@"{part.GetDescription()}: {part switch
-                {
-                    Part.Part1 => caloriesPerElve.Max(),
-                    Part.Part2 => caloriesPerElve.OrderByDescending(i => i).Take(3).Sum(),
-                    _ => throw new ArgumentOutOfRangeException(nameof(part), part, null)
-                }
-            }");
+
+        PrintSolution(
+            part,
+            () => caloriesPerElve.Max().ToString(),
+            () => caloriesPerElve.OrderByDescending(i => i).Take(3).Sum().ToString()
+        );
     }
 
     private static IEnumerable<int> SelectTotalCaloriesPerElve(IEnumerable<string> lines)
