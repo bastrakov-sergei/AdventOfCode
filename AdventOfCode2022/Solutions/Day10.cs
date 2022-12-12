@@ -8,7 +8,7 @@ namespace AdventOfCode2022;
 
 public class Day10 : AdventOfCodeBaseSolution
 {
-    public Day10() : base(10)
+    public Day10() : base()
     {
     }
 

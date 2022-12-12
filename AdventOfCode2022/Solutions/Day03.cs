@@ -7,7 +7,7 @@ namespace AdventOfCode2022.Solutions;
 
 public class Day03 : AdventOfCodeBaseSolution
 {
-    public Day03() : base(3)
+    public Day03() : base()
     {
     }
 

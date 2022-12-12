@@ -54,4 +54,25 @@ public static class Extensions
 
         return list.ToArray();
     }
+
+    public static IEnumerable<T[]> SplitBy<T>(this IEnumerable<T> elements, Predicate<T> predicate)
+    {
+        var chunk = new List<T>();
+        foreach (var element in elements)
+        {
+            if (predicate(element))
+            {
+                yield return chunk.ToArray();
+                chunk.Clear();
+                continue;
+            }
+
+            chunk.Add(element);
+        }
+
+        if (chunk.Any())
+        {
+            yield return chunk.ToArray();
+        }
+    }
 }

@@ -8,10 +8,6 @@ namespace AdventOfCode2022;
 [Ignore("Template")]
 public class DaySolutionTemplate : AdventOfCodeBaseSolution
 {
-    public DaySolutionTemplate() : base(5)
-    {
-    }
-
     [TestCase(Part.Part1, TestName = "Part 1 solution")]
     [TestCase(Part.Part2, TestName = "Part 2 solution")]
     public void Solve(Part part)
